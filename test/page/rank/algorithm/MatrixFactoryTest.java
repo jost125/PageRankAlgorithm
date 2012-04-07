@@ -23,7 +23,7 @@ public class MatrixFactoryTest {
 	public void testCreateMatrixFromReader() {
 		Matrix matrix = factory.createMatrixFromReader(new BufferedReader(new StringReader("2\n1:1\n0:1")));
 		
-		double[][] values = {{0.0, 0.5}, {0.5, 0.0}};
+		double[][] values = {{0.0, 1.0}, {1.0, 0.0}};
 		assertEqualsMatrix(new Matrix(values), matrix);
 	}
 
@@ -32,7 +32,7 @@ public class MatrixFactoryTest {
 		double[][] actualValues = actual.getArray();
 		for (int x = 0; x < expectedValues.length; x++) {
 			for (int y = 0; y < expectedValues[x].length; y++) {
-				assertEquals(expectedValues[x][y], actualValues[x][y], 0.1);
+				assertEquals(expectedValues[x][y], actualValues[x][y], 0.0001);
 			}
 		}
 
