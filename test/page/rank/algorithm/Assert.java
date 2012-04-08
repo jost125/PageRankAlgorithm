@@ -4,7 +4,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import static org.junit.Assert.*;
 
-public class MatrixTestCase {
+public class Assert {
 	
 	static public void assertEqualsCollections(Collection<Double> expected, Collection<Double> actual) {
 		assertEquals(expected.size(), actual.size());

@@ -5,7 +5,7 @@ import java.io.BufferedReader;
 import java.io.StringReader;
 import org.junit.Before;
 import org.junit.Test;
-import static org.junit.Assert.*;
+import static page.rank.algorithm.Assert.*;
 
 public class MatrixFactoryTest {
 

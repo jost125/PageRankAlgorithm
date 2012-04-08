@@ -5,7 +5,7 @@ import Jama.Matrix;
 import java.util.ArrayList;
 import org.junit.Before;
 import org.junit.Test;
-import static page.rank.algorithm.MatrixTestCase.*;
+import static page.rank.algorithm.Assert.*;
 
 public class HMatrixTest {
 
