@@ -10,6 +10,10 @@ abstract public class PageRankMatrix {
 	private Matrix matrix;
 
 	public PageRankMatrix(Matrix matrix) {
+		if (matrix.getColumnDimension() != matrix.getRowDimension()) {
+			throw new IllegalArgumentException("Matrix should have row dimension same as column dimension");
+		}
+
 		this.matrix = matrix;
 		createPiVector();
 	}
