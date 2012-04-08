@@ -475,6 +475,94 @@ public class SolutionTest {
 		assertEqualsCollections(expected, ranks);
 	}
 
+	@Test
+	public void googleMatrixSecondTestAfterZeroIteration() {
+		GoogleMatrix googleMatrix = loadSecondGoogleMatrix();
+
+		List<Double> ranks = googleMatrix.getRanks();
+
+		List<Double> expected = new ArrayList<Double>();
+		expected.add(1.0);
+		expected.add(0.0);
+		expected.add(0.0);
+		expected.add(0.0);
+
+		assertEqualsCollections(expected, ranks);
+	}
+
+	@Test
+	public void googleMatrixSecondTestAfterFirstIteration() {
+		GoogleMatrix googleMatrix = loadSecondGoogleMatrix();
+
+		googleMatrix.computeNextIteration();
+
+		List<Double> ranks = googleMatrix.getRanks();
+
+		List<Double> expected = new ArrayList<Double>();
+		expected.add(0.025);
+		expected.add(0.325);
+		expected.add(0.325);
+		expected.add(0.325);
+
+		assertEqualsCollections(expected, ranks);
+	}
+
+	@Test
+	public void googleMatrixSecondTestAfterSecondIteration() {
+		GoogleMatrix googleMatrix = loadSecondGoogleMatrix();
+
+		googleMatrix.computeNextIteration();
+		googleMatrix.computeNextIteration();
+
+		List<Double> ranks = googleMatrix.getRanks();
+
+		List<Double> expected = new ArrayList<Double>();
+		expected.add(0.025);
+		expected.add(0.0325);
+		expected.add(0.6175);
+		expected.add(0.325);
+
+		assertEqualsCollections(expected, ranks);
+	}
+
+	@Test
+	public void googleMatrixSecondTestAfterThirdIteration() {
+		GoogleMatrix googleMatrix = loadSecondGoogleMatrix();
+
+		googleMatrix.computeNextIteration();
+		googleMatrix.computeNextIteration();
+		googleMatrix.computeNextIteration();
+
+		List<Double> ranks = googleMatrix.getRanks();
+
+		List<Double> expected = new ArrayList<Double>();
+		expected.add(0.025);
+		expected.add(0.0325);
+		expected.add(0.35425);
+		expected.add(0.58825);
+
+		assertEqualsCollections(expected, ranks);
+	}
+
+	@Test
+	public void googleMatrixSecondTestAfterThousandthIteration() {
+		GoogleMatrix googleMatrix = loadSecondGoogleMatrix();
+
+		for (int i = 0; i < 1000; i++) {
+			googleMatrix.computeNextIteration();
+		}
+
+		List<Double> ranks = googleMatrix.getRanks();
+
+		List<Double> expected = new ArrayList<Double>();
+		expected.add(0.025);
+		expected.add(0.0325);
+		expected.add(0.47894736842);
+		expected.add(0.46355263157);
+
+		assertEqualsCollections(expected, ranks);
+	}
+
 	private HMatrix loadFirstHMatrix() {
 		Matrix matrix = loadMatrix(firstTestFile);
 		return new HMatrix(matrix);
@@ -507,6 +595,11 @@ public class SolutionTest {
 
 	private GoogleMatrix loadFirstGoogleMatrix() {
 		Matrix matrix = loadMatrix(firstTestFile);
+		return new GoogleMatrix(matrix);
+	}
+
+	private GoogleMatrix loadSecondGoogleMatrix() {
+		Matrix matrix = loadMatrix(secondTestFile);
 		return new GoogleMatrix(matrix);
 	}
 
