@@ -307,6 +307,100 @@ public class SolutionTest {
 		assertEqualsCollections(expected, ranks);
 	}
 
+	@Test
+	public void stochasticMatrixThirdTestAfterZeroIteration() {
+		StochasticMatrix stochasticMatrix = loadThirdStochasticMatrix();
+
+		List<Double> ranks = stochasticMatrix.getRanks();
+
+		List<Double> expected = new ArrayList<Double>();
+		expected.add(1.0);
+		expected.add(0.0);
+		expected.add(0.0);
+		expected.add(0.0);
+		expected.add(0.0);
+		expected.add(0.0);
+
+		assertEqualsCollections(expected, ranks);
+	}
+
+	@Test
+	public void stochasticMatrixThirdTestAfterFirstIteration() {
+		StochasticMatrix stochasticMatrix = loadThirdStochasticMatrix();
+		stochasticMatrix.computeNextIteration();
+
+		List<Double> ranks = stochasticMatrix.getRanks();
+
+		List<Double> expected = new ArrayList<Double>();
+		expected.add(0.0);
+		expected.add(0.5);
+		expected.add(0.5);
+		expected.add(0.0);
+		expected.add(0.0);
+		expected.add(0.0);
+
+		assertEqualsCollections(expected, ranks);
+	}
+
+	@Test
+	public void stochasticMatrixThirdTestAfterSecondIteration() {
+		StochasticMatrix stochasticMatrix = loadThirdStochasticMatrix();
+		stochasticMatrix.computeNextIteration();
+		stochasticMatrix.computeNextIteration();
+
+		List<Double> ranks = stochasticMatrix.getRanks();
+
+		List<Double> expected = new ArrayList<Double>();
+		expected.add(0.08333333333);
+		expected.add(0.08333333333);
+		expected.add(0.08333333333);
+		expected.add(0.08333333333);
+		expected.add(0.33333333333);
+		expected.add(0.33333333333);
+
+		assertEqualsCollections(expected, ranks);
+	}
+
+	@Test
+	public void stochasticMatrixThirdTestAfterThirdIteration() {
+		StochasticMatrix stochasticMatrix = loadThirdStochasticMatrix();
+		stochasticMatrix.computeNextIteration();
+		stochasticMatrix.computeNextIteration();
+		stochasticMatrix.computeNextIteration();
+
+		List<Double> ranks = stochasticMatrix.getRanks();
+
+		List<Double> expected = new ArrayList<Double>();
+		expected.add(0.04166666666);
+		expected.add(0.08333333333);
+		expected.add(0.05555555555);
+		expected.add(0.51388888888);
+		expected.add(0.08333333333);
+		expected.add(0.22222222222);
+
+		assertEqualsCollections(expected, ranks);
+	}
+
+	@Test
+	public void stochasticMatrixThirdTestAfterHunderthIteration() {
+		StochasticMatrix stochasticMatrix = loadThirdStochasticMatrix();
+		for (int i = 0; i < 100; i++) {
+			stochasticMatrix.computeNextIteration();
+		}
+
+		List<Double> ranks = stochasticMatrix.getRanks();
+
+		List<Double> expected = new ArrayList<Double>();
+		expected.add(0.12213740458);
+		expected.add(0.18320610687);
+		expected.add(0.09160305343);
+		expected.add(0.27480916030);
+		expected.add(0.16793893129);
+		expected.add(0.16030534351);
+
+		assertEqualsCollections(expected, ranks);
+	}
+
 	private HMatrix loadFirstHMatrix() {
 		Matrix matrix = loadMatrix(firstTestFile);
 		return new HMatrix(matrix);
@@ -329,6 +423,11 @@ public class SolutionTest {
 
 	private StochasticMatrix loadSecondStochasticMatrix() {
 		Matrix matrix = loadMatrix(secondTestFile);
+		return new StochasticMatrix(matrix);
+	}
+
+	private StochasticMatrix loadThirdStochasticMatrix() {
+		Matrix matrix = loadMatrix(thirdTestFile);
 		return new StochasticMatrix(matrix);
 	}
 
