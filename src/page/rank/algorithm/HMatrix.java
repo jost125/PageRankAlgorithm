@@ -3,8 +3,8 @@ package page.rank.algorithm;
 import Jama.Matrix;
 
 public class HMatrix extends PageRankMatrix {
-	public HMatrix(Matrix matrix, Matrix piVector) {
-		super(matrix, piVector);
+	public HMatrix(Matrix matrix) {
+		super(matrix);
 	}
 
 	@Override

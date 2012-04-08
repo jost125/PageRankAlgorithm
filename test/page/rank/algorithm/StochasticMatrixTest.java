@@ -7,19 +7,17 @@ import org.junit.Before;
 import org.junit.Test;
 import static page.rank.algorithm.MatrixTestCase.*;
 
-public class SMatrixTest {
+public class StochasticMatrixTest {
 
-	private SMatrix sMatrix;
+	private StochasticMatrix stochasticMatrix;
 
 	@Before
 	public void setUp() {
 		double[][] values = {{0.0, 0.5, 0.5}, {1.0, 0.0, 0.0}, {0.0, 0.0, 0.0}};
-		double[][] piValues = {{1.0, 0.0, 0.0}};
 
 		Matrix matrix = new Matrix(values);
-		Matrix piVector = new Matrix(piValues);
 
-		sMatrix = new SMatrix(matrix, piVector);
+		stochasticMatrix = new StochasticMatrix(matrix);
 	}
 
 	@Test
@@ -29,9 +27,9 @@ public class SMatrixTest {
 		expected.add(0.5);
 		expected.add(0.5);
 
-		sMatrix.computeNextIteration();
+		stochasticMatrix.computeNextIteration();
 
-		assertEqualsCollections(expected, sMatrix.getRanks());
+		assertEqualsCollections(expected, stochasticMatrix.getRanks());
 	}
 
 	@Test
@@ -41,10 +39,10 @@ public class SMatrixTest {
 		expected.add(0.16666666);
 		expected.add(0.16666666);
 
-		sMatrix.computeNextIteration();
-		sMatrix.computeNextIteration();
+		stochasticMatrix.computeNextIteration();
+		stochasticMatrix.computeNextIteration();
 
-		assertEqualsCollections(expected, sMatrix.getRanks());
+		assertEqualsCollections(expected, stochasticMatrix.getRanks());
 	}
 
 	@Test
@@ -55,9 +53,9 @@ public class SMatrixTest {
 		expected.add(0.3);
 
 		for (int i = 0; i < 100; i++) {
-			sMatrix.computeNextIteration();
+			stochasticMatrix.computeNextIteration();
 		}
 
-		assertEqualsCollections(expected, sMatrix.getRanks());
+		assertEqualsCollections(expected, stochasticMatrix.getRanks());
 	}
 }

@@ -14,12 +14,10 @@ public class HMatrixTest {
 	@Before
 	public void setUp() {
 		double[][] values = {{0.0, 1.0}, {1.0, 0.0}};
-		double[][] piValues = {{1.0, 0.0}};
 
 		Matrix matrix = new Matrix(values);
-		Matrix piVector = new Matrix(piValues);
 
-		hMatrix = new HMatrix(matrix, piVector);
+		hMatrix = new HMatrix(matrix);
 	}
 
 	@Test

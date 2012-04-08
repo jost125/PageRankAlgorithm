@@ -9,9 +9,22 @@ abstract public class PageRankMatrix {
 	private Matrix piVector;
 	private Matrix matrix;
 
-	public PageRankMatrix(Matrix matrix, Matrix piVector) {
+	public PageRankMatrix(Matrix matrix) {
 		this.matrix = matrix;
-		this.piVector = piVector;
+		createPiVector();
+	}
+
+	private void createPiVector() {
+		int length = matrix.getRowDimension();
+
+		double[][] values = new double[1][length];
+		values[0][0] = 1.0;
+
+		for (int i = 1; i < length; i++) {
+			values[0][i] = 0.0;
+		}
+
+		this.piVector = new Matrix(values);
 	}
 
 	abstract public void computeNextIteration();

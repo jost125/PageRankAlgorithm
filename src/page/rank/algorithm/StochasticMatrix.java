@@ -2,9 +2,9 @@ package page.rank.algorithm;
 
 import Jama.Matrix;
 
-public class SMatrix extends PageRankMatrix {
-	public SMatrix(Matrix matrix, Matrix piVector) {
-		super(matrix, piVector);
+public class StochasticMatrix extends PageRankMatrix {
+	public StochasticMatrix(Matrix matrix) {
+		super(matrix);
 	}
 
 	@Override
