@@ -47,7 +47,7 @@ public class SolutionTest {
 	}
 
 	@Test
-	public void hMatrixFirstTestAfterOneIteration() {
+	public void hMatrixFirstTestAfterFirstIteration() {
 		HMatrix hMatrix = loadFirstHMatrix();
 		hMatrix.computeNextIteration();
 
@@ -230,7 +230,6 @@ public class SolutionTest {
 
 	private StochasticMatrix loadSecondStochasticMatrix() {
 		Matrix matrix = loadMatrix(secondTestFile);
-
 		return new StochasticMatrix(matrix);
 	}
 
