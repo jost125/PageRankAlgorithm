@@ -401,6 +401,80 @@ public class SolutionTest {
 		assertEqualsCollections(expected, ranks);
 	}
 
+	@Test
+	public void googleMatrixFirstTestAfterZeroIteration() {
+		GoogleMatrix googleMatrix = loadFirstGoogleMatrix();
+
+		List<Double> ranks = googleMatrix.getRanks();
+
+		List<Double> expected = new ArrayList<Double>();
+		expected.add(1.0);
+		expected.add(0.0);
+
+		assertEqualsCollections(expected, ranks);
+	}
+
+	@Test
+	public void googleMatrixFirstTestAfterFirstIteration() {
+		GoogleMatrix googleMatrix = loadFirstGoogleMatrix();
+		googleMatrix.computeNextIteration();
+
+		List<Double> ranks = googleMatrix.getRanks();
+
+		List<Double> expected = new ArrayList<Double>();
+		expected.add(0.05);
+		expected.add(0.95);
+
+		assertEqualsCollections(expected, ranks);
+	}
+
+	@Test
+	public void googleMatrixFirstTestAfterSecondIteration() {
+		GoogleMatrix googleMatrix = loadFirstGoogleMatrix();
+		googleMatrix.computeNextIteration();
+		googleMatrix.computeNextIteration();
+
+		List<Double> ranks = googleMatrix.getRanks();
+
+		List<Double> expected = new ArrayList<Double>();
+		expected.add(0.905);
+		expected.add(0.095);
+
+		assertEqualsCollections(expected, ranks);
+	}
+
+	@Test
+	public void googleMatrixFirstTestAfterThirdIteration() {
+		GoogleMatrix googleMatrix = loadFirstGoogleMatrix();
+		googleMatrix.computeNextIteration();
+		googleMatrix.computeNextIteration();
+		googleMatrix.computeNextIteration();
+
+		List<Double> ranks = googleMatrix.getRanks();
+
+		List<Double> expected = new ArrayList<Double>();
+		expected.add(0.1355);
+		expected.add(0.8645);
+
+		assertEqualsCollections(expected, ranks);
+	}
+
+	@Test
+	public void googleMatrixFirstTestAfterHundredthIteration() {
+		GoogleMatrix googleMatrix = loadFirstGoogleMatrix();
+		for (int i = 0; i < 100; i++) {
+			googleMatrix.computeNextIteration();
+		}
+
+		List<Double> ranks = googleMatrix.getRanks();
+
+		List<Double> expected = new ArrayList<Double>();
+		expected.add(0.5);
+		expected.add(0.5);
+
+		assertEqualsCollections(expected, ranks);
+	}
+
 	private HMatrix loadFirstHMatrix() {
 		Matrix matrix = loadMatrix(firstTestFile);
 		return new HMatrix(matrix);
@@ -429,6 +503,11 @@ public class SolutionTest {
 	private StochasticMatrix loadThirdStochasticMatrix() {
 		Matrix matrix = loadMatrix(thirdTestFile);
 		return new StochasticMatrix(matrix);
+	}
+
+	private GoogleMatrix loadFirstGoogleMatrix() {
+		Matrix matrix = loadMatrix(firstTestFile);
+		return new GoogleMatrix(matrix);
 	}
 
 	private Matrix loadMatrix(File file) {
