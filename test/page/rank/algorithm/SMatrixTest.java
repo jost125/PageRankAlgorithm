@@ -1,0 +1,63 @@
+package page.rank.algorithm;
+
+import Jama.Matrix;
+import java.util.ArrayList;
+import java.util.List;
+import org.junit.Before;
+import org.junit.Test;
+import static page.rank.algorithm.MatrixTestCase.*;
+
+public class SMatrixTest {
+
+	private SMatrix sMatrix;
+
+	@Before
+	public void setUp() {
+		double[][] values = {{0.0, 0.5, 0.5}, {1.0, 0.0, 0.0}, {0.0, 0.0, 0.0}};
+		double[][] piValues = {{1.0, 0.0, 0.0}};
+
+		Matrix matrix = new Matrix(values);
+		Matrix piVector = new Matrix(piValues);
+
+		sMatrix = new SMatrix(matrix, piVector);
+	}
+
+	@Test
+	public void testFirstIteration() {
+		List<Double> expected = new ArrayList<Double>();
+		expected.add(0.0);
+		expected.add(0.5);
+		expected.add(0.5);
+
+		sMatrix.computeNextIteration();
+
+		assertEqualsCollections(expected, sMatrix.getRanks());
+	}
+
+	@Test
+	public void testSecondIteration() {
+		List<Double> expected = new ArrayList<Double>();
+		expected.add(0.66666666);
+		expected.add(0.16666666);
+		expected.add(0.16666666);
+
+		sMatrix.computeNextIteration();
+		sMatrix.computeNextIteration();
+
+		assertEqualsCollections(expected, sMatrix.getRanks());
+	}
+
+	@Test
+	public void testHundredIterations() {
+		List<Double> expected = new ArrayList<Double>();
+		expected.add(0.4);
+		expected.add(0.3);
+		expected.add(0.3);
+
+		for (int i = 0; i < 100; i++) {
+			sMatrix.computeNextIteration();
+		}
+
+		assertEqualsCollections(expected, sMatrix.getRanks());
+	}
+}
