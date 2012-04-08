@@ -3,11 +3,9 @@ package page.rank.algorithm;
 import java.util.List;
 import Jama.Matrix;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
 import org.junit.Before;
 import org.junit.Test;
-import static org.junit.Assert.*;
+import static page.rank.algorithm.MatrixTestCase.*;
 
 public class HMatrixTest {
 
@@ -54,16 +52,5 @@ public class HMatrixTest {
 		hMatrix.computeNextIteration();
 
 		assertEqualsCollections(expected, hMatrix.getRanks());
-	}
-
-	private void assertEqualsCollections(Collection<Double> expected, Collection<Double> actual) {
-		assertEquals(expected.size(), actual.size());
-
-		Iterator<Double> expectedIterator = expected.iterator();
-		Iterator<Double> actualIterator = actual.iterator();
-
-		while (expectedIterator.hasNext()) {
-			assertEquals(expectedIterator.next(), actualIterator.next(), 0.0001);
-		}
 	}
 }
