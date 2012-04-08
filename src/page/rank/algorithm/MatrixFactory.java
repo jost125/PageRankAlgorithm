@@ -37,7 +37,7 @@ public class MatrixFactory {
 					Set<Link> links = page.getLinks();
 
 					for (Link link : links) {
-						matrix.set(i, link.getTarget(), (double)link.getNumberOfLinks());
+						matrix.set(i, link.getTarget(), (double)link.getNumberOfLinks() / (double)links.size());
 					}
 				}
 			}
