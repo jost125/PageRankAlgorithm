@@ -26,14 +26,4 @@ public class MatrixFactoryTest {
 		double[][] values = {{0.0, 1.0}, {1.0, 0.0}};
 		assertEqualsMatrix(new Matrix(values), matrix);
 	}
-
-	private void assertEqualsMatrix(Matrix expected, Matrix actual) {
-		double[][] expectedValues = expected.getArray();
-		double[][] actualValues = actual.getArray();
-		for (int x = 0; x < expectedValues.length; x++) {
-			for (int y = 0; y < expectedValues[x].length; y++) {
-				assertEquals(expectedValues[x][y], actualValues[x][y], 0.0001);
-			}
-		}
-	}
 }
