@@ -124,6 +124,100 @@ public class SolutionTest {
 	}
 
 	@Test
+	public void hMatrixThirdTestAfterZeroIteration() {
+		HMatrix hMatrix = loadThirdHMatrix();
+
+		List<Double> ranks = hMatrix.getRanks();
+
+		List<Double> expected = new ArrayList<Double>();
+		expected.add(1.0);
+		expected.add(0.0);
+		expected.add(0.0);
+		expected.add(0.0);
+		expected.add(0.0);
+		expected.add(0.0);
+
+		assertEqualsCollections(expected, ranks);
+	}
+
+	@Test
+	public void hMatrixThirdTestAfterFirstIteration() {
+		HMatrix hMatrix = loadThirdHMatrix();
+		hMatrix.computeNextIteration();
+
+		List<Double> ranks = hMatrix.getRanks();
+
+		List<Double> expected = new ArrayList<Double>();
+		expected.add(0.0);
+		expected.add(0.5);
+		expected.add(0.5);
+		expected.add(0.0);
+		expected.add(0.0);
+		expected.add(0.0);
+
+		assertEqualsCollections(expected, ranks);
+	}
+
+	@Test
+	public void hMatrixThirdTestAfterSecondIteration() {
+		HMatrix hMatrix = loadThirdHMatrix();
+		hMatrix.computeNextIteration();
+		hMatrix.computeNextIteration();
+
+		List<Double> ranks = hMatrix.getRanks();
+
+		List<Double> expected = new ArrayList<Double>();
+		expected.add(0.0);
+		expected.add(0.0);
+		expected.add(0.0);
+		expected.add(0.0);
+		expected.add(0.25);
+		expected.add(0.25);
+
+		assertEqualsCollections(expected, ranks);
+	}
+
+	@Test
+	public void hMatrixThirdTestAfterThirdIteration() {
+		HMatrix hMatrix = loadThirdHMatrix();
+		hMatrix.computeNextIteration();
+		hMatrix.computeNextIteration();
+		hMatrix.computeNextIteration();
+
+		List<Double> ranks = hMatrix.getRanks();
+
+		List<Double> expected = new ArrayList<Double>();
+		expected.add(0.0);
+		expected.add(0.0);
+		expected.add(0.0);
+		expected.add(0.375);
+		expected.add(0.0);
+		expected.add(0.125);
+
+		assertEqualsCollections(expected, ranks);
+	}
+
+	@Test
+	public void hMatrixThirdTestAfterHunderthIteration() {
+		HMatrix hMatrix = loadThirdHMatrix();
+		for (int i = 0; i < 100; i++) {
+			hMatrix.computeNextIteration();
+		}
+
+		List<Double> ranks = hMatrix.getRanks();
+
+		List<Double> expected = new ArrayList<Double>();
+		expected.add(0.0);
+		expected.add(0.0);
+		expected.add(0.0);
+		expected.add(0.0);
+		expected.add(0.0);
+		expected.add(0.0);
+
+		assertEqualsCollections(expected, ranks);
+	}
+
+	@Test
 	public void stochasticMatrixFirstTestAfterZeroIteration() {
 		StochasticMatrix stochasticMatrix = loadFirstStochasticMatrix();
 
@@ -220,6 +314,11 @@ public class SolutionTest {
 
 	private HMatrix loadSecondHMatrix() {
 		Matrix matrix = loadMatrix(secondTestFile);
+		return new HMatrix(matrix);
+	}
+
+	private HMatrix loadThirdHMatrix() {
+		Matrix matrix = loadMatrix(thirdTestFile);
 		return new HMatrix(matrix);
 	}
 
