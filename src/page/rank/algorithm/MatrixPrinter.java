@@ -5,9 +5,9 @@ import Jama.Matrix;
 public class MatrixPrinter {
 	public void print(Matrix matrix) {
 		double[][] values = matrix.getArray();
-		for (double[] line : values) {
-			for (double cell : line) {
-				System.out.print(" " + cell);
+		for (int x = 0; x < values.length; x++) {
+			for (int y = 0; y < values[x].length; y++) {
+				System.out.print(" " + values[x][y]);
 			}
 			System.out.println("");
 		}
