@@ -35,8 +35,5 @@ public class MatrixFactoryTest {
 				assertEquals(expectedValues[x][y], actualValues[x][y], 0.0001);
 			}
 		}
-
-		MatrixPrinter printer = new MatrixPrinter();
-		printer.print(actual);
 	}
 }
